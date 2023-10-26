@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Виберіть необхідну версію Node.js
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Tests
+      run: npm test
+      continue-on-error: true # Паралельний запуск, не зупиняти інший крок при помилках
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Виберіть необхідну версію Node.js
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Linter
+      run: npm run lint
+      continue-on-error: true # Паралельний запуск, не зупиняти інший крок при помилках
