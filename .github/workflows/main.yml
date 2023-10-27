@@ -16,14 +16,15 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14' # Виберіть необхідну версію Node.js
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
 
-    - name: Run Tests
-      run: npm test
+    - name: Run tests
+      run: npm tests
       continue-on-error: true # Паралельний запуск
+
 
   lint:
     runs-on: ubuntu-latest
