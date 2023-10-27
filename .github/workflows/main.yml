@@ -23,7 +23,7 @@ jobs:
 
     - name: Run Tests
       run: npm test
-      continue-on-error: true # Паралельний запуск, не зупиняти інший крок при помилках
+      continue-on-error: true # Паралельний запуск
 
   lint:
     runs-on: ubuntu-latest
@@ -35,11 +35,11 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14' # Виберіть необхідну версію Node.js
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
 
     - name: Run Linter
       run: npm run lint
-      continue-on-error: true # Паралельний запуск, не зупиняти інший крок при помилках
+      continue-on-error: true # Паралельний запуск
