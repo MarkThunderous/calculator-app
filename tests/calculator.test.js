@@ -23,7 +23,7 @@ module.exports = {
 };
 
 // calculator.tests.js
-const { appendToDisplay, clearDisplay, calculateResult } = require('./calculator');
+const { appendToDisplay, clearDisplay, calculateResult } = require('./calculator.test');
 
 describe('Calculator Functions', () => {
     let display;
