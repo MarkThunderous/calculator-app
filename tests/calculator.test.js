@@ -1,57 +1,25 @@
-let display = document.getElementById("display");
+const { appendToDisplay, clearDisplay, calculateResult } = require('./calculator');
 
-function appendToDisplay(value) {
-    display.value += value;
-}
+test('should append a value to the display', () => {
+    let display = { value: '' };
+    appendToDisplay('5', display);
+    expect(display.value).toBe('5');
+});
 
-function clearDisplay() {
-    display.value = "";
-}
+test('should clear the display', () => {
+    let display = { value: '123' };
+    clearDisplay(display);
+    expect(display.value).toBe('');
+});
 
-function calculateResult() {
-    try {
-        display.value = eval(display.value);
-    } catch (error) {
-        display.value = "Помилка";
-    }
-}
+test('should calculate the result', () => {
+    let display = { value: '2 + 3' };
+    calculateResult(display);
+    expect(display.value).toBe('5');
+});
 
-module.exports = {
-    appendToDisplay,
-    clearDisplay,
-    calculateResult
-};
-
-// calculator.tests.js
-const { appendToDisplay, clearDisplay, calculateResult } = require('./calculator.test');
-
-describe('Calculator Functions', () => {
-    let display;
-
-    beforeEach(() => {
-        display = { value: '' };
-    });
-
-    test('should append a value to the display', () => {
-        appendToDisplay('5');
-        expect(display.value).toBe('5');
-    });
-
-    test('should clear the display', () => {
-        display.value = '123';
-        clearDisplay();
-        expect(display.value).toBe('');
-    });
-
-    test('should calculate the result', () => {
-        display.value = '2 + 3';
-        calculateResult();
-        expect(display.value).toBe('5');
-    });
-
-    test('should handle errors', () => {
-        display.value = '2 / 0';
-        calculateResult();
-        expect(display.value).toBe('Помилка');
-    });
+test('should handle errors', () => {
+    let display = { value: '2 / 0' };
+    calculateResult(display);
+    expect(display.value).toBe('Помилка');
 });
